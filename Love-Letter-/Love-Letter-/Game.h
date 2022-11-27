@@ -2,10 +2,15 @@
 #include"Player.h"
 class Game
 {private:
-	int n0OfPlayers;
-	Player players[4];
+	int m_n0OfPlayers;
+	
 public:
-	Game();
+	Game()=default;
+
+	int VerifyNumberOfPlayers(const int32_t& m_n0OfPlayers);
+	void SetNumberOfPlayers(const int32_t& numberOfPaticipants);
+	
+	friend std::istream& operator >>(std::istream& in, Game& game);
     
 };
 
