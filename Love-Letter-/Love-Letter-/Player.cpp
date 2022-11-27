@@ -27,3 +27,28 @@ void Player::setFirstCard(Card firstCard)
 {
 	this->firstCard = firstCard;
 }
+
+Card Player::getFirstCard()
+{
+	return firstCard;
+}
+
+void Player::setSecondCard(Card secondCard)
+{
+	this->secondCard = secondCard;
+}
+
+Card Player::getSecondCard()
+{
+	return secondCard;
+}
+
+void Player::setToken(int tokens)
+{
+	this->tokens = tokens;
+}
+
+int Player::getToken()
+{
+	return tokens;
+}

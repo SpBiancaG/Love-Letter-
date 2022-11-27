@@ -2,9 +2,14 @@
 //
 
 #include <iostream>
-
+#include "Card.h"
+#include "Player.h"
+#include "Game.h"
 int main()
 {
+    std::string name;
+    Card card("numeTest",100,"descriereTest");
+    Player player1("numeTestP", card, card, 0);
     std::cout << "Hello World!\n";
 }
 
