@@ -15,67 +15,70 @@ Card::Card(const Card& card)
 	description = card.description;
 }
 
-void Card::setName(std::string name)
+
+
+void Card::SetName(std::string name)
 {
 	this->name = name;
 }
 
-std::string Card::getName()
+std::string Card::GetName()
 {
 	return name;
 }
 
-void Card::setNumber(int number)
+void Card::SetNumber(int number)
 {
 	this->number = number;
 }
 
-int Card::getNumber()
+int Card::GetNumber()
 {
 	return number;
 }
 
-void Card::setDescription(std::string description)
+void Card::SetDescription(std::string description)
 {
 	this->description = description;
 }
 
-std::string Card::getDescription()
+std::string Card::GetDescription()
 {
 	return description;
 }
 
-Card Card::createRandom()
+Card Card::CreateRandom(int number)
 {
-	std::random_device rd; // obtain a random number from hardware
-	std::mt19937 gen(rd()); // seed the generator
-	std::uniform_int_distribution<> distr(0, names->size()); // define the range
-
-	switch (distr(gen)) {
-	case 0:
-		return Card(names[distr(gen)], 1, "Name a non-Guard card and choose another player. If that player has that card, he or she is out of the round.");
-		break;
-	case 1:
-		return Card(names[distr(gen)], 2, "Look at another player's hand.");
-		break;
-	case 2:
-		return Card(names[distr(gen)], 3, "You an	d another player secretly compare hands. The player with the lower value is out of the round.");
-		break;
-	case 3:
-		return Card(names[distr(gen)], 4, "Until your next turn, ignore all effects from other players' cards.");
-		break;
-	case 4:
-		return Card(names[distr(gen)], 5, "Choose any player (including yourself) to discard his or her hand and draw a new card.");
-		break;
-	case 5:
-		return Card(names[distr(gen)], 6, "Trade hands with another player of your choice.");
-		break;
-	case 6:
-		return Card(names[distr(gen)], 7, "If you have this card and the King of Prince in your hand, you must discard this card.");
-		break;
-	case 7:
-		return Card(names[distr(gen)], 8, "If you discard this card, you are out of the round.");
-		break;
-	}
 	
+
+	
+		switch (number) {
+		case 1:
+			return Card("Guard", 1, "Name a non-Guard card and choose another player. If that player has that card, he or she is out of the round.");
+			break;
+		case 2:
+			return Card("Priest", 2, "Look at another player's hand.");
+			break;
+		case 3:
+			return Card("Baron", 3, "You and another player secretly compare hands. The player with the lower value is out of the round.");
+			break;
+		case 4:
+			return Card("Handmaid", 4, "Until your next turn, ignore all effects from other players' cards.");
+			break;
+		case 5:
+			return Card("Prince", 5, "Choose any player (including yourself) to discard his or her hand and draw a new card.");
+			break;
+		case 6:
+			return Card("King", 6, "Trade hands with another player of your choice.");
+			break;
+		case 7:
+			return Card("Countess", 7, "If you have this card and the King of Prince in your hand, you must discard this card.");
+			break;
+		case 8:
+			return Card("Princess", 8, "If you discard this card, you are out of the round.");
+			break;
+		}
 }
+
+
+
