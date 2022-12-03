@@ -7,10 +7,28 @@
 #include "Game.h"
 int main()
 {
-    std::string name;
-    Card card("numeTest",100,"descriereTest");
-    Player player1("numeTestP", card, card, 0);
-    std::cout << "Hello World!\n";
+	/*
+	 int playerLen = 0;
+	 cout << "Number of players: "; cin >> playerLen;
+
+	 if (playerLen < 2 || playerLen>4) {
+		 cout << "Not enough players. Try again!";
+		 return 0;
+	 }
+
+	 list<Player> players;
+
+	 for (int i = 0; i < playerLen; i++) {
+		 string playerName = "";
+		 Card card;
+		 cout << "Player nr "<<i<<" name: "; cin >> playerName;
+		 Player playerAdd(playerName, card, card, 0);
+		 players.push_back(playerAdd);
+	 }
+	 */
+	Card card;
+	card = card.createRandom();
+	std::cout << card.getDescription();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

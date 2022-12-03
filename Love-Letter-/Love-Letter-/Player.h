@@ -9,8 +9,9 @@ class Player
 	Card secondCard;
 	int tokens;
 public:
-	Player();
+	Player() = default;
 	Player(std::string name, Card firstCard, Card secondCard, int tokens);
+	Player(const Player& player);
 	void setName(std::string name);
 	std::string getName();
 	void setFirstCard(Card firstCard);

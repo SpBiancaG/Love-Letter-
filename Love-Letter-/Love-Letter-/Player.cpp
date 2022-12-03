@@ -1,9 +1,6 @@
 #include "Player.h"
 
-Player::Player()
-{
-	std::cout << "Default constructor in Player";
-}
+
 
 Player::Player(std::string name, Card firstCard, Card secondCard, int tokens)
 {
@@ -11,6 +8,14 @@ Player::Player(std::string name, Card firstCard, Card secondCard, int tokens)
 	this->firstCard = firstCard;
 	this->secondCard = secondCard;
 	this->tokens = tokens;
+}
+
+Player::Player(const Player& player)
+{
+	name = player.name;
+	firstCard = player.firstCard;
+	secondCard = player.secondCard;
+	tokens = player.tokens;
 }
 
 void Player::setName(std::string name)

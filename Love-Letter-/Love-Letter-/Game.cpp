@@ -16,6 +16,10 @@ void Game::SetNumberOfPlayers(const int32_t& n0OfPlayers)
 	
 }
 
+void Game::printStartingGame()
+{
+}
+
 std::istream& operator>>(std::istream& in, Game& game)
 {
 	// TODO: insert return statement here
