@@ -7,18 +7,18 @@ class Player
 	std::string name;
 	Card firstCard;
 	Card secondCard;
-	int tokens;
+	int tokens=0;
 public:
 	Player() = default;
 	Player(std::string name, Card firstCard, Card secondCard, int tokens);
 	Player(const Player& player);
-	void setName(std::string name);
-	std::string getName();
-	void setFirstCard(Card firstCard);
-	Card getFirstCard();
-	void setSecondCard(Card secondCard);
-	Card getSecondCard();
-	void setToken(int tokens);
-	int getToken();
+	void SetName(std::string name);
+	std::string GetName();
+	void SetFirstCard(Card firstCard);
+	Card GetFirstCard();
+	void SetSecondCard(Card secondCard);
+	Card GetSecondCard();
+	void SetToken(int tokens);
+	int GetToken();
 };
 

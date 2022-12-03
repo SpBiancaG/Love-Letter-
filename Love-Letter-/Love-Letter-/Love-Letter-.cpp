@@ -5,30 +5,16 @@
 #include "Card.h"
 #include "Player.h"
 #include "Game.h"
+
 int main()
 {
-	/*
-	 int playerLen = 0;
-	 cout << "Number of players: "; cin >> playerLen;
-
-	 if (playerLen < 2 || playerLen>4) {
-		 cout << "Not enough players. Try again!";
-		 return 0;
-	 }
-
-	 list<Player> players;
-
-	 for (int i = 0; i < playerLen; i++) {
-		 string playerName = "";
-		 Card card;
-		 cout << "Player nr "<<i<<" name: "; cin >> playerName;
-		 Player playerAdd(playerName, card, card, 0);
-		 players.push_back(playerAdd);
-	 }
-	 */
-	Card card;
-	card = card.createRandom();
-	std::cout << card.getDescription();
+	Game game;
+	game.SetStartingPlayers();
+	game.PrintStartingGame();
+	int key;
+	std::cin >> key;
+	game.NextPlayer();
+	game.PrintStartingGame();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

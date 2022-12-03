@@ -1,19 +1,9 @@
 #include "Game.h"
 
-int Game::VerifyNumberOfPlayers(const int32_t&m_nrOfPlayers)
+void Game::NextPlayer()
 {
 	
-		if (m_n0OfPlayers >= 2 &&m_nrOfPlayers <= 4)
-			returnm_nrOfPlayers;
-		else return 0;
-	
-}
-
-void Game::SetNumberOfPlayers(const int32_t& n0OfPlayers)
-{
-	
-		m_n0OfPlayers = n0OfPlayers;
-	
+		this->selectedPlayerToPlay++;
 }
 
 int Game::GetRandomNumber()
@@ -38,14 +28,14 @@ void Game::SetStartingPlayers()
 		std::cout << "Not enough players. Try again!";
 		return;
 	}
-
+	GetBeginningCards(playerLen);
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
 		Card card;
 		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
-		int nr1 = GetRandomNumber();
-		int nr2 = GetRandomNumber();
-		Player playerAdd(playerName, card.createRandom(availableCards[nr1]), card.createRandom(availableCards[nr2]), 0);
+		Player playerAdd(playerName, card.CreateRandom(GetRandomNumber()), card, 0);
+		std::cout << playerAdd.getSecondCard().GetName();
+		
 
 		this->players.push_back(playerAdd);
 	}
@@ -64,11 +54,15 @@ void Game::PrintStartingGame()
 	std::cout << players[selectedPlayerToPlay].getSecondCard().GetName() << std::endl;
 }
 
-std::istream& operator>>(std::istream& in, Game& game)
+void Game::GetBeginningCards(const int& playerLen)
 {
-	// TODO: insert return statement here
-	in >> (Game&)game;
-	in >> game.m_nrOfPlayers;
-	in.get();
-	game.SetNumberOfPlayers(game.VerifyNumberOfPlayers(game.m_nrOfPlayers));
+	Card card;
+
+	if (playerLen == 2)
+		for (int i = 0; i < 4; i++)
+			this->beginningCards.push_back(card.CreateRandom(GetRandomNumber()));
+	else
+		this->beginningCards.push_back(card.CreateRandom(GetRandomNumber()));
 }
+
+

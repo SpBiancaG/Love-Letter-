@@ -18,42 +18,44 @@ Player::Player(const Player& player)
 	tokens = player.tokens;
 }
 
-void Player::setName(std::string name)
+
+
+void Player::SetName(std::string name)
 {
 	this->name = name;
 }
 
-std::string Player::getName()
+std::string Player::GetName()
 {
 	return name;
 }
 
-void Player::setFirstCard(Card firstCard)
+void Player::SetFirstCard(Card firstCard)
 {
 	this->firstCard = firstCard;
 }
 
-Card Player::getFirstCard()
+Card Player::GetFirstCard()
 {
 	return firstCard;
 }
 
-void Player::setSecondCard(Card secondCard)
+void Player::SetSecondCard(Card secondCard)
 {
 	this->secondCard = secondCard;
 }
 
-Card Player::getSecondCard()
+Card Player::GetSecondCard()
 {
 	return secondCard;
 }
 
-void Player::setToken(int tokens)
+void Player::SetToken(int tokens)
 {
 	this->tokens = tokens;
 }
 
-int Player::getToken()
+int Player::GetToken()
 {
 	return tokens;
 }
