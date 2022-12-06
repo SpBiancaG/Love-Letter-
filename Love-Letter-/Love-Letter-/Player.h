@@ -4,10 +4,10 @@
 #include "Card.h"
 class Player
 {private:
-	std::string name;
-	Card firstCard;
-	Card secondCard;
-	int tokens=0;
+	std::string m_name;
+	Card m_firstCard;
+	Card m_secondCard;
+	uint8_t m_tokens=0;
 public:
 	Player() = default;
 	Player(std::string name, Card firstCard, Card secondCard, int tokens);

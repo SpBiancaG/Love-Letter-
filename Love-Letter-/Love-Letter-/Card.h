@@ -5,14 +5,15 @@
 
 class Card
 {private:
-	std::string name;
-	int number;
-	std::string description;
+	std::string m_name;
+	uint8_t m_number;
+	std::string m_description;
 	
 public:
 	Card() = default;
-	Card(std::string name, int number, std::string description);
+	Card(std::string name, uint8_t number, std::string description);
 	Card(const Card& card);
+	Card& operator = (const Card& other);
 	void SetName(std::string name);
 	std::string GetName();
 	void SetNumber(int number);

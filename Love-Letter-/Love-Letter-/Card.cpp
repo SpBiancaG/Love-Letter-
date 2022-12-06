@@ -1,50 +1,58 @@
 #include "Card.h"
 
 
-Card::Card(std::string name, int number, std::string description)
+Card::Card(std::string name, uint8_t number, std::string description) :
+	m_name(name),
+    m_number(number),
+	m_description(description)
 {
-	this->name = name;
-	this->number = number;
-	this->description = description;
+	
 }
 
 Card::Card(const Card& card)
 {
-	name = card.name;
-	number = card.number;
-	description = card.description;
+	*this = card;
+}
+
+Card& Card::operator=(const Card& other)
+{
+	m_name = other.m_name;
+	m_number = other.m_number;
+	m_description = other.m_description;
+	
+	return *this;
 }
 
 
 
 void Card::SetName(std::string name)
 {
-	this->name = name;
+	this->m_name = name;
 }
 
 std::string Card::GetName()
 {
-	return name;
+	return m_name;
 }
 
 void Card::SetNumber(int number)
 {
-	this->number = number;
+	this->m_number = number;
 }
 
 int Card::GetNumber()
 {
-	return number;
+	return m_number;
 }
 
 void Card::SetDescription(std::string description)
 {
-	this->description = description;
+	this->m_description = description;
 }
 
 std::string Card::GetDescription()
 {
-	return description;
+	return m_description;
 }
 
 Card Card::CreateRandom(int number)

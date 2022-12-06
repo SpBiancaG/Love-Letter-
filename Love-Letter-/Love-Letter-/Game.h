@@ -2,16 +2,17 @@
 #include<string>
 #include<vector>
 #include<iostream>
+#include<array>
 #include"Player.h"
 #include"Card.h"
 class Game
 {private:
-	int m_nrOfPlayers;
-	std::vector<Player> players;
-	std::vector<Card> beginningCards;
-	int availableCards[16] = { 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8 };
-	int availableCardsLen = 15;
-	int selectedPlayerToPlay = -1;
+	uint8_t m_nrOfPlayers;
+	std::vector<Player> m_players;
+	std::vector<Card> m_beginningCards;
+	uint8_t m_availableCards[16] = { 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8 };
+	uint8_t m_availableCardsLen = 15;
+	int m_selectedPlayerToPlay = -1;
 public:
 	Game()=default;
 
