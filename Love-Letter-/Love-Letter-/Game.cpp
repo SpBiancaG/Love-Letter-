@@ -1,9 +1,15 @@
 #include "Game.h"
-
+#include "Player.h"
 void Game::NextPlayer()
 {
 	
 		this->selectedPlayerToPlay++;
+		Card card = card.CreateRandom(GetRandomNumber());
+		if (players[selectedPlayerToPlay].GetFirstCard().GetName()._Equal(""))
+			players[selectedPlayerToPlay].SetFirstCard(players[selectedPlayerToPlay].GetSecondCard());
+		players[selectedPlayerToPlay].SetSecondCard(card);
+		std::cout << players[selectedPlayerToPlay].GetName() << " drew " << card.GetName();
+
 }
 
 int Game::GetRandomNumber()
@@ -29,29 +35,57 @@ void Game::SetStartingPlayers()
 		return;
 	}
 	GetBeginningCards(playerLen);
+
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
 		Card card;
-		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
+		std::cout << "Player number " << i << " Name: "; std::cin >> playerName;
 		Player playerAdd(playerName, card.CreateRandom(GetRandomNumber()), card, 0);
-		std::cout << playerAdd.getSecondCard().GetName();
-		
-
+		std::cout << playerAdd.GetSecondCard().GetName();
 		this->players.push_back(playerAdd);
 	}
+	NextPlayer();
+	
+	PrintGame(playerLen);
+	int key;
+	std::cin >> key;
+	NextPlayer();
+	PrintGame(playerLen);
+
 }
+
 
 
 
 void Game::PrintStartingGame()
 {
-	std::cout << players[selectedPlayerToPlay].getName() << "' turn" << std::endl << std::endl;
-	std::cout << "First Card:" << players[selectedPlayerToPlay].getFirstCard().GetNumber();
+	std::cout << players[selectedPlayerToPlay].GetName() << "'s turn" << std::endl << std::endl;
+	std::cout << "First Card:" << players[selectedPlayerToPlay].GetFirstCard().GetNumber();
 	std::cout << "     ";
-	std::cout << players[selectedPlayerToPlay].getFirstCard().GetName() << std::endl;
-	std::cout << "Second Card:" << players[selectedPlayerToPlay].getSecondCard().GetNumber();
+	std::cout << players[selectedPlayerToPlay].GetFirstCard().GetName() << std::endl;
+	std::cout << "Second Card:" << players[selectedPlayerToPlay].GetSecondCard().GetNumber();
 	std::cout << "     ";
-	std::cout << players[selectedPlayerToPlay].getSecondCard().GetName() << std::endl;
+	std::cout << players[selectedPlayerToPlay].GetSecondCard().GetName() << std::endl;
+}
+void PrintGame(int& playerLen) {
+	system("cls");
+
+	if (playerLen != 2) {
+		std::cout << "TOP CARD" <<std:: endl << beginningCards[0].getNumber() << " " << beginningCards[0].getName() << std::endl << std::endl;
+	}
+	else {
+		std::cout << "TOP CARDS" <<std:: endl;
+		for (int i = 0; i < 4; i++)
+			std::cout << beginningCards[i].getNumber() << " " << beginningCards[i].getName() <<std:: endl;
+		std::cout << std::endl << std::endl;
+	}
+	std::cout << players[selectedPlayerToPlay].getName() << "'s turn" << std::endl << std::endl;
+	std::cout << "First Card:" << players[selectedPlayerToPlay].getFirstCard().getNumber();
+	std::cout << "     ";
+	std::cout << players[selectedPlayerToPlay].getFirstCard().getName() << std::endl;
+	std::cout << "Second Card:" << players[selectedPlayerToPlay].getSecondCard().getNumber();
+	std::cout << "     ";
+	std::cout << players[selectedPlayerToPlay].getSecondCard().getName() << std::endl;
 }
 
 void Game::GetBeginningCards(const int& playerLen)

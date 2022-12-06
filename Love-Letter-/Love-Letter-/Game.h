@@ -11,7 +11,7 @@ class Game
 	std::vector<Card> beginningCards;
 	int availableCards[16] = { 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8 };
 	int availableCardsLen = 15;
-	int selectedPlayerToPlay = 0;
+	int selectedPlayerToPlay = -1;
 public:
 	Game()=default;
 
@@ -22,6 +22,8 @@ public:
 	void SetStartingPlayers();
 	void PrintStartingGame();
 	void GetBeginningCards(const int& playerLen);
+	void PrintGame(int& playerLen);
+	
 
 	
 	
