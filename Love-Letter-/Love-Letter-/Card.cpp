@@ -11,17 +11,11 @@ Card::Card(std::string name, uint8_t number, std::string description) :
 
 Card::Card(const Card& card)
 {
-	*this = card;
+	m_name = card.m_name;
+	m_number = card.m_number;
+	m_description = card.m_description;
 }
 
-Card& Card::operator=(const Card& other)
-{
-	m_name = other.m_name;
-	m_number = other.m_number;
-	m_description = other.m_description;
-	
-	return *this;
-}
 
 
 
@@ -35,7 +29,9 @@ std::string Card::GetName()
 	return m_name;
 }
 
-void Card::SetNumber(int number)
+
+
+void Card::SetNumber(uint8_t number)
 {
 	this->m_number = number;
 }
@@ -54,8 +50,16 @@ std::string Card::GetDescription()
 {
 	return m_description;
 }
+Card& Card::operator=(const Card& other)
+{
+	m_name = other.m_name;
+	m_number = other.m_number;
+	m_description = other.m_description;
 
-Card Card::CreateRandom(int number)
+	return *this;
+}
+
+Card Card::CreateRandom(uint8_t number)
 {
 	
 

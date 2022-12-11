@@ -14,7 +14,7 @@ class Game
 	uint8_t m_availableCardsLen = 15;
 	int m_selectedPlayerToPlay = -1;
 public:
-	Game()=default;
+	
 
 	
 	
@@ -22,7 +22,7 @@ public:
 	int GetRandomNumber();
 	void SetStartingPlayers();
 	void PrintStartingGame();
-	void GetBeginningCards(const int& playerLen);
+	void GetBeginningCards(int& playerLen);
 	void PrintGame(int& playerLen);
 	
 

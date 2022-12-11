@@ -69,7 +69,7 @@ void Game::PrintStartingGame()
 }
 
 
-void Game::GetBeginningCards(const int& playerLen)
+void Game::GetBeginningCards( int& playerLen)
 {
 	Card card;
 
