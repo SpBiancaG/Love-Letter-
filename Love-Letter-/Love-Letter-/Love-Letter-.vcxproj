@@ -127,14 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Baron.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Countess.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Guard.cpp" />
+    <ClCompile Include="Handmaid.cpp" />
+    <ClCompile Include="King.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Baron.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Countess.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Guard.h" />
+    <ClInclude Include="Handmaid.h" />
+    <ClInclude Include="King.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
