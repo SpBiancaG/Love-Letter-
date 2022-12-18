@@ -2,7 +2,7 @@
 
 
 
-Player::Player(std::string name, Card firstCard, Card secondCard, int tokens) :
+Player::Player(std::string name, Card *firstCard, Card *secondCard, uint8_t  tokens) :
 	m_name(name),
 	m_firstCard(firstCard),
 	m_secondCard(secondCard),
@@ -17,6 +17,12 @@ Player::Player(const Player& player)
 	*this = player;
 }
 
+Player::~Player()
+{
+	delete m_firstCard;
+	delete m_secondCard;
+}
+
 
 
 void Player::SetName(std::string name)
@@ -29,22 +35,22 @@ std::string Player::GetName()
 	return m_name;
 }
 
-void Player::SetFirstCard(Card firstCard)
+void Player::SetFirstCard(Card *firstCard)
 {
 	this->m_firstCard = firstCard;
 }
 
-Card Player::GetFirstCard()
+Card* Player::GetFirstCard()
 {
 	return m_firstCard;
 }
 
-void Player::SetSecondCard(Card secondCard)
+void Player::SetSecondCard(Card *secondCard)
 {
 	this->m_secondCard = secondCard;
 }
 
-Card Player::GetSecondCard()
+Card* Player::GetSecondCard()
 {
 	return m_secondCard;
 }

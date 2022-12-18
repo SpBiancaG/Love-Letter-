@@ -136,6 +136,9 @@
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Priest.cpp" />
+    <ClCompile Include="Prince.cpp" />
+    <ClCompile Include="Princess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Baron.h" />
@@ -146,6 +149,9 @@
     <ClInclude Include="Handmaid.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Priest.h" />
+    <ClInclude Include="Prince.h" />
+    <ClInclude Include="Princess.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

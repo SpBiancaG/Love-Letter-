@@ -42,6 +42,15 @@
     <ClCompile Include="King.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Priest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prince.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Princess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h">
@@ -66,6 +75,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="King.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Priest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Prince.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Princess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

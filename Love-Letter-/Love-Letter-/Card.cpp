@@ -41,6 +41,7 @@ int Card::GetNumber()
 	return m_number;
 }
 
+
 void Card::SetDescription(std::string description)
 {
 	this->m_description = description;
