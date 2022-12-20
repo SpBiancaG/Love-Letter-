@@ -32,7 +32,7 @@ public:
 	void PrintGame(int& playerLen);
 	void PrintRecicleCards(int& playerLen);
 	int GetRandomNumber();
-	void PrintStartingGame();
+	
 	void GetAvailableCardsAddresses();
 
 	void Test();

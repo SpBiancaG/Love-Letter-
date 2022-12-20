@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Player.h"
+#include<vector>
 void Game::PlayerDrawCard(Player* player)
 {
 	int randomNr = GetRandomNumber();
@@ -29,12 +30,9 @@ void Game::GameFirstCards(int& playersLen)
 void Game::NextPlayer()
 {
 	
-		this->m_selectedPlayerToPlay++;
-		Card card = card.CreateRandom(GetRandomNumber());
-		if (m_players[m_selectedPlayerToPlay].GetFirstCard().GetName()._Equal(""))
-			m_players[m_selectedPlayerToPlay].SetFirstCard(m_players[m_selectedPlayerToPlay].GetSecondCard());
-		m_players[m_selectedPlayerToPlay].SetSecondCard(card);
-		std::cout <<m_players[m_selectedPlayerToPlay].GetName() << " drew " << card.GetName();
+	this->m_selectedPlayerToPlay++;
+	PlayerDrawCard(&m_players[m_selectedPlayerToPlay]);
+	std::cout << m_players[m_selectedPlayerToPlay].GetName() << " drew a card" << std::endl;
 
 }
 
@@ -42,17 +40,14 @@ int Game::GetRandomNumber()
 {
 	std::random_device rd; // obtain a random number from hardware
 	std::mt19937 gen(rd()); // seed the generator
-	std::uniform_int_distribution<> distr(0, m_availableCardsLen); // define the range
-	int randomNr = distr(gen);
-	for (int i = randomNr; i < m_availableCardsLen; ++i)
-		m_availableCards[i] = m_availableCards[i + 1];
-	m_availableCards[m_availableCardsLen] = 0;
-	m_availableCardsLen--;
-	return randomNr;
+	std::uniform_int_distribution<> distr(0, availableCardsAddress.size() - 1); // define the range
+	return distr(gen);
 }
 
 void Game::SetStartingPlayers()
 {
+	GetAvailableCardsAddresses();
+
 	int playerLen = 0;
 	std::cout << "Number of players: "; std::cin >> playerLen;
 
@@ -60,56 +55,63 @@ void Game::SetStartingPlayers()
 		std::cout << "Not enough players. Try again!";
 		return;
 	}
-	GetBeginningCards(playerLen);
+
+	GameFirstCards(playerLen);
 
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
-		Card card;
-		std::cout << "Player number " << i << " Name: "; std::cin >> playerName;
-		Player playerAdd(playerName, card.CreateRandom(GetRandomNumber()), card, 0);
-		std::cout << playerAdd.GetSecondCard().GetName();
-		this->m_players.push_back(playerAdd);
+		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
+		Player playerAdd(playerName, new Card(), new Card(), 0);
+		m_players.push_back(playerAdd);
+		PlayerDrawCard(&m_players[i]);
+
 	}
+
 	NextPlayer();
-	
 	PrintGame(playerLen);
 	int key;
 	std::cin >> key;
 	NextPlayer();
 	PrintGame(playerLen);
-
 }
 
 
 
 
-void Game::PrintStartingGame()
+
+
+void Game::GetAvailableCardsAddresses()
 {
-	std::cout <<m_players[m_selectedPlayerToPlay].GetName() << "'s turn" << std::endl << std::endl;
-	std::cout << "First Card:" << m_players[m_selectedPlayerToPlay].GetFirstCard().GetNumber();
-	std::cout << "     ";
-	std::cout << m_players[m_selectedPlayerToPlay].GetFirstCard().GetName() << std::endl;
-	std::cout << "Second Card:" << m_players[m_selectedPlayerToPlay].GetSecondCard().GetNumber();
-	std::cout << "     ";
-	std::cout << m_players[m_selectedPlayerToPlay].GetSecondCard().GetName() << std::endl;
+	for (int i = 0; i < 16; i++)
+		availableCardsAddress.push_back(&availableCards[i]);
 }
 
-
-void Game::GetBeginningCards( int& playerLen)
+void Game::Test()
 {
-	Card card;
-
-	if (playerLen == 2)
-		for (int i = 0; i < 4; i++)
-			this->m_beginningCards.push_back(card.CreateRandom(GetRandomNumber()));
-	else
-		this->m_beginningCards.push_back(card.CreateRandom(GetRandomNumber()));
+	GetAvailableCardsAddresses();
+	Card* card = new Card();
+	//card = availableCardsAddress[0];
+	std::cout << card->GetName();
 }
+
+
+
 
 void Game::PrintGame(int& playerLen)
 {
 	system("cls");
 
+	PrintRecicleCards(playerLen);
+
+	std::cout << m_players[m_selectedPlayerToPlay].GetName() << "' turn" << std::endl << std::endl;
+	std::cout << "First Card:" << m_players[m_selectedPlayerToPlay].GetFirstCard()->GetNumber() << "\t";
+	std::cout << m_players[m_selectedPlayerToPlay].GetFirstCard()->GetName() << std::endl;
+	std::cout << "Second Card:" << m_players[m_selectedPlayerToPlay].GetSecondCard()->GetNumber() << "\t";
+	std::cout << m_players[m_selectedPlayerToPlay].GetSecondCard()->GetName() << std::endl;
+}
+
+void Game::PrintRecicleCards(int& playerLen)
+{
 	if (playerLen != 2) {
 		std::cout << "TOP CARD" << std::endl << m_beginningCards[0].GetNumber() << " " << m_beginningCards[0].GetName() << std::endl << std::endl;
 	}
@@ -119,13 +121,6 @@ void Game::PrintGame(int& playerLen)
 			std::cout << m_beginningCards[i].GetNumber() << " " << m_beginningCards[i].GetName() << std::endl;
 		std::cout << std::endl << std::endl;
 	}
-	std::cout << m_players[m_selectedPlayerToPlay].GetName() << "'s turn" << std::endl << std::endl;
-	std::cout << "First Card:" << m_players[m_selectedPlayerToPlay].GetFirstCard().GetNumber();
-	std::cout << "     ";
-	std::cout << m_players[m_selectedPlayerToPlay].GetFirstCard().GetName() << std::endl;
-	std::cout << "Second Card:" << m_players[m_selectedPlayerToPlay].GetSecondCard().GetNumber();
-	std::cout << "     ";
-	std::cout << m_players[m_selectedPlayerToPlay].GetSecondCard().GetName() << std::endl;
 }
 
 
