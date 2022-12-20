@@ -9,5 +9,7 @@ public:
 	Countess(std::string name, int number, std::string description);
 
 	Countess(const Countess& guard);
+
+	virtual void action(Player player);
 };
 

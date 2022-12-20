@@ -2,29 +2,41 @@
 #include<string>
 #include<vector>
 #include<iostream>
-#include<array>
-#include"Player.h"
-#include"Card.h"
+
+
+#include "Player.h"
+#include "Baron.h"
+#include "Countess.h"
+#include "Guard.h"
+#include "Handmaid.h"
+#include "King.h"
+#include "Priest.h"
+#include "Prince.h"
+#include "Princess.h"
 class Game
 {private:
 	uint8_t m_nrOfPlayers;
 	std::vector<Player> m_players;
 	std::vector<Card> m_beginningCards;
-	//uint8_t m_availableCards[16] = { 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8 };
-	Card availableCards[16] = { Guard(), Guard(), Guard(), Guard(), Guard(), Priest(), Priest(), Baron(), Baron(), Handmaid(), Handmaid(), Prince(), Prince(), King(), Countess(), Princess() };
-	uint8_t m_availableCardsLen = 15;
+	
+	std::vector<Card> availableCards = { Guard(), Guard(), Guard(), Guard(), Guard(), Priest(), Priest(), Baron(), Baron(), Handmaid(), Handmaid(), Prince(), Prince(), King(), Countess(), Princess() };
+	std::vector<Card*> availableCardsAddress;
 	int m_selectedPlayerToPlay = -1;
 public:
 	
-
-	
-	
+	Game() = default;
+	void PlayerDrawCard(Player* player);
+	void GameFirstCards(int& playersLen);
 	void NextPlayer();
-	int GetRandomNumber();
 	void SetStartingPlayers();
-	void PrintStartingGame();
-	void GetBeginningCards(int& playerLen);
 	void PrintGame(int& playerLen);
+	void PrintRecicleCards(int& playerLen);
+	int GetRandomNumber();
+	void PrintStartingGame();
+	void GetAvailableCardsAddresses();
+
+	void Test();
+	
 	
 
 	

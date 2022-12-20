@@ -2,9 +2,10 @@
 #include<iostream>
 #include <string>
 #include<random>
+#include "Player.h"
 
 class Card
-{private:
+{protected:
 	std::string m_name;
 	uint8_t m_number;
 	std::string m_description;
@@ -26,6 +27,6 @@ public:
 	std::string GetDescription();
 
 	Card CreateRandom(uint8_t number);
-	Card& operator=(const Card& other);
+	
 };
 

@@ -1,5 +1,31 @@
 #include "Game.h"
 #include "Player.h"
+void Game::PlayerDrawCard(Player* player)
+{
+	int randomNr = GetRandomNumber();
+
+	if (player->GetFirstCard()->GetName() == "")
+		player->SetFirstCard(availableCardsAddress[randomNr]);
+	else
+		player->SetSecondCard(availableCardsAddress[randomNr]);
+
+	availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+}
+void Game::GameFirstCards(int& playersLen)
+{
+	if (playersLen == 2)
+		for (int i = 0; i < 4; i++) {
+			int randomNr = GetRandomNumber();
+			m_beginningCards.push_back(availableCardsAddress[randomNr]);
+			availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+
+		}
+	else {
+		int randomNr = GetRandomNumber();
+		m_beginningCards.push_back(availableCardsAddress[randomNr]);
+		availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+	}
+}
 void Game::NextPlayer()
 {
 	

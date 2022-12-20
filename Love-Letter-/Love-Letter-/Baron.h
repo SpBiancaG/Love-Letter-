@@ -8,5 +8,7 @@ class Baron :
 	Baron(std::string name, int number, std::string description);
 
 	Baron(const Baron& guard);
+
+	virtual void action(Player player);
 };
 
