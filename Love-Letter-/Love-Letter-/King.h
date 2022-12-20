@@ -1,5 +1,5 @@
 #pragma once
-#include "Card.h"
+
 class King :
     public Card
 {
@@ -8,5 +8,6 @@ class King :
 	King(std::string name, int number, std::string description);
 
 	King(const King& guard);
+	virtual void action(Player player);
 };
 

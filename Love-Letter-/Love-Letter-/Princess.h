@@ -9,5 +9,7 @@ public:
 	Princess(std::string name, int number, std::string description);
 
 	Princess(const Princess& guard);
+
+	virtual void action(Player player);
 };
 

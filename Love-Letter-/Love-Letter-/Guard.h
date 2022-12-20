@@ -9,5 +9,6 @@ public:
 	Guard(std::string name, int number, std::string description);
 
 	Guard(const Guard& guard);
+	virtual void action(Player player);
 };
 

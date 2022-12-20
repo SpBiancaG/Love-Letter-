@@ -9,5 +9,7 @@ public:
 	Prince(std::string name, int number, std::string description);
 
 	Prince(const Prince& guard);
+
+	virtual void action(Player player);
 };
 

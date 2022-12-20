@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Player.h"
 #include<vector>
+#include<random>
 void Game::PlayerDrawCard(Player* player)
 {
 	int randomNr = GetRandomNumber();
@@ -113,12 +114,12 @@ void Game::PrintGame(int& playerLen)
 void Game::PrintRecicleCards(int& playerLen)
 {
 	if (playerLen != 2) {
-		std::cout << "TOP CARD" << std::endl << m_beginningCards[0].GetNumber() << " " << m_beginningCards[0].GetName() << std::endl << std::endl;
+		std::cout << "TOP CARD" << std::endl << m_beginningCards[0]->GetNumber() << " " << m_beginningCards[0]->GetName() << std::endl << std::endl;
 	}
 	else {
 		std::cout << "TOP CARDS" << std::endl;
 		for (int i = 0; i < 4; i++)
-			std::cout << m_beginningCards[i].GetNumber() << " " << m_beginningCards[i].GetName() << std::endl;
+			std::cout << m_beginningCards[i]->GetNumber() << " " << m_beginningCards[i]->GetName() << std::endl;
 		std::cout << std::endl << std::endl;
 	}
 }

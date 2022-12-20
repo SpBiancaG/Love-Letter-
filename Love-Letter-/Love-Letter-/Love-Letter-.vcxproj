@@ -127,18 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Baron.cpp" />
+    <ClCompile Include="Actions.cpp" />
     <ClCompile Include="Card.cpp" />
-    <ClCompile Include="Countess.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Guard.cpp" />
-    <ClCompile Include="Handmaid.cpp" />
-    <ClCompile Include="King.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Priest.cpp" />
-    <ClCompile Include="Prince.cpp" />
-    <ClCompile Include="Princess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Baron.h" />

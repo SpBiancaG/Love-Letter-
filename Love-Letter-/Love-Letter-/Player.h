@@ -1,15 +1,6 @@
 #pragma once
-#include<iostream>
+
 #include<string>
-#include "Card.h"
-#include "Baron.h"
-#include "Countess.h"
-#include "Guard.h"
-#include "Handmaid.h"
-#include "King.h"
-#include "Priest.h"
-#include "Prince.h"
-#include "Princess.h"
 #include <vector>
 class Player
 {private:

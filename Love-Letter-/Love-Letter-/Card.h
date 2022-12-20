@@ -1,7 +1,6 @@
 #pragma once
-#include<iostream>
+
 #include <string>
-#include<random>
 #include "Player.h"
 
 class Card
@@ -26,7 +25,7 @@ public:
 	void SetDescription(std::string description);
 	std::string GetDescription();
 
-	Card CreateRandom(uint8_t number);
+	virtual void action(Player player);
 	
 };
 
