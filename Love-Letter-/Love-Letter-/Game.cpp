@@ -178,14 +178,26 @@ void Game::StartGame(int playerLen) {
 
 }
 
-
-void Game::Test()
-{
-	GetAvailableCardsAddresses();
-	Card* card = new Card();
-	//card = availableCardsAddress[0];
-	std::cout << card->GetName();
+int checkCardMaxValue(Player player) {
+	//player are prima carte
+	if (player.GetFirstCard() != nullptr)
+		//player are si a doua carte
+		if (player.GetSecondCard() != nullptr)
+			//verificam care e mai mare si dam return
+			if (player.GetFirstCard()->GetNumber() >= player.GetSecondCard()->GetNumber())
+				return player.GetFirstCard()->GetNumber();
+			else
+				return player.GetSecondCard()->GetNumber();
+	//player are DOAR prima carte, deci returnam prima carte
+		else return player.GetFirstCard()->GetNumber();
+	//player nu are prima carte, o are DOAR pe a doua, deci returnam a doua carte
+	else if (player.GetSecondCard() != nullptr)
+		return player.GetSecondCard()->GetNumber();
+	//Eroare, dam 0
+	else return 0;
 }
+
+
 
 
 
