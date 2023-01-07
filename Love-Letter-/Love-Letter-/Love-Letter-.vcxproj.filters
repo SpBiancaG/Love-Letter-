@@ -33,6 +33,9 @@
     <ClCompile Include="Countess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Guard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h">

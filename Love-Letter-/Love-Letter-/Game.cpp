@@ -301,6 +301,21 @@ void Game::PrintGame(int& playerLen)
 	std::cout << m_players[selectedPlayer].GetSecondCard()->GetDescription() << std::endl;
 
 }
+void Game::NextPlayer(int playerLen) {
 
+	if (selectedPlayer == nrOfPlayersInGame - 1)
+		selectedPlayer = -1;
+
+	selectedPlayer++;
+	PlayerDrawCard(&m_players[selectedPlayer], playerLen);
+	std::cout << m_players[selectedPlayer].GetName() << " drew a card" << std::endl;
+	gameStart = true;
+}
+
+void Game::GetAvailableCardsAddresses() {
+	availableCardsAddress.clear();
+	for (int i = 0; i < 16; i++)
+		availableCardsAddress.push_back(availableCards[i]);
+}
 
 
