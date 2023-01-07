@@ -197,6 +197,59 @@ int checkCardMaxValue(Player player) {
 	else return 0;
 }
 
+void Game::EndGame(int playerLen) {
+	if (nrOfPlayersInGame == 1) {
+		for (int i = 0; i < m_players.size(); i++)
+			if (!m_players[i].GetIsDead()) {
+				m_players[i].SetToken(m_players[i].GetToken() + 1);
+				RestartGame(playerLen);
+			}
+	}
+
+	else if (nrOfPlayersInGame > 1) {
+
+		int max = 0;
+		int nrMax = 0;
+
+		for (int i = 0; i < m_players.size(); i++)
+			if (max < checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
+				max = checkCardMaxValue(m_players[i]);
+				nrMax = 1;
+			}
+			else if (max == checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead())
+				nrMax++;
+
+		if (nrMax == 1) {
+			for (int i = 0; i < m_players.size(); i++)
+				if (max == checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
+					m_players[i].SetToken(m_players[i].GetToken() + 1);
+					RestartGame(playerLen);
+				}
+		}
+
+		else if (nrMax > 1) {
+			int maxCards = 0;
+
+			for (int i = 0; i < m_players.size(); i++)
+				if (maxCards < m_players[i].GetCardsValue() && !m_players[i].GetIsDead() && max == checkCardMaxValue(m_players[i]))
+					maxCards = m_players[i].GetCardsValue();
+
+			for (int i = 0; i < m_players.size(); i++)
+				if (maxCards == m_players[i].GetCardsValue() && !m_players[i].GetIsDead()) {
+					m_players[i].SetToken(m_players[i].GetToken() + 1);
+					RestartGame(playerLen);
+				}
+		}
+	}
+}
+bool VerifyWinCondition(Player player, int token, int playerLen, int playerLenSelected) {
+	if (player.GetToken() == token && playerLen == playerLenSelected) {
+		std::cout << player.GetName() << " won the game with 7 tokens!" << std::endl;
+		system("pause");
+		return true;
+	}
+	return false;
+}
 
 
 
