@@ -251,24 +251,29 @@ bool VerifyWinCondition(Player player, int token, int playerLen, int playerLenSe
 	return false;
 }
 
-
-
-
-void Game::PrintGame(int& playerLen)
-{
-	system("cls");
-
-	PrintRecicleCards(playerLen);
-
-	std::cout << m_players[m_selectedPlayerToPlay].GetName() << "' turn" << std::endl << std::endl;
-	std::cout << "First Card:" << m_players[m_selectedPlayerToPlay].GetFirstCard()->GetNumber() << "\t";
-	std::cout << m_players[m_selectedPlayerToPlay].GetFirstCard()->GetName() << std::endl;
-	std::cout << "Second Card:" << m_players[m_selectedPlayerToPlay].GetSecondCard()->GetNumber() << "\t";
-	std::cout << m_players[m_selectedPlayerToPlay].GetSecondCard()->GetName() << std::endl;
+void Game::RestartGame(int playerLen) {
+	GetAvailableCardsAddresses();
+	nrOfPlayersInGame = playerLen;
+	nrOfCardsInGame = 16;
+	selectedPlayer = -1;
+	bool won = false;
+	for (int i = 0; i < m_players.size(); i++) {
+		won = VerifyWinCondition(m_players[i], 7, playerLen, 2);
+		won = VerifyWinCondition(m_players[i], 5, playerLen, 3);
+		won = VerifyWinCondition(m_players[i], 4, playerLen, 4);
+		if (won)
+			return;
+		m_players[i].SetFirstCard(nullptr);
+		m_players[i].SetSecondCard(nullptr);
+		m_players[i].SetIsDead(false);
+		selectedPlayer++;
+		PlayerDrawCard(&m_players[i], playerLen);
+	}
+	selectedPlayer = -1;
+	StartGame(playerLen);
 }
 
-void Game::PrintRecicleCards(int& playerLen)
-{
+void Game::PrintRecicleCards(int& playerLen) {
 	if (playerLen != 2) {
 		std::cout << "TOP CARD" << std::endl << m_beginningCards[0]->GetNumber() << " " << m_beginningCards[0]->GetName() << std::endl << std::endl;
 	}
@@ -279,5 +284,23 @@ void Game::PrintRecicleCards(int& playerLen)
 		std::cout << std::endl << std::endl;
 	}
 }
+
+
+void Game::PrintGame(int& playerLen)
+{
+	system("cls");
+
+	PrintRecicleCards(playerLen);
+
+	std::cout << m_players[selectedPlayer].GetName() << "'s turn" << std::endl << std::endl;
+	std::cout << "First Card:" << m_players[selectedPlayer].GetFirstCard()->GetNumber() << "\t";
+	std::cout << m_players[selectedPlayer].GetFirstCard()->GetName() << "\t";
+	std::cout << m_players[selectedPlayer].GetFirstCard()->GetDescription() << std::endl;
+	std::cout << "Second Card:" << m_players[selectedPlayer].GetSecondCard()->GetNumber() << "\t";
+	std::cout << m_players[selectedPlayer].GetSecondCard()->GetName() << "\t";
+	std::cout << m_players[selectedPlayer].GetSecondCard()->GetDescription() << std::endl;
+
+}
+
 
 
