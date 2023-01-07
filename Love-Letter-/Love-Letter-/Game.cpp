@@ -1,7 +1,36 @@
 #include "Game.h"
-#include "Player.h"
+
 #include<vector>
 #include<random>
+
+void Game::CheckForCountess(Player* player, int playerLen) {
+	if (player->GetFirstCard() != nullptr)
+		if (player->GetFirstCard()->GetName() == "Countess")
+			player->GetFirstCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+		else
+			if (player->GetSecondCard() != nullptr)
+				if (player->GetSecondCard()->GetName() == "Countess")
+					player->GetSecondCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+
+	if (player->GetFirstCard() != nullptr)
+		if (player->GetFirstCard()->GetName() == "King" || player->GetFirstCard()->GetName() == "Prince") {
+			if (player->GetSecondCard() != nullptr)
+				if (player->GetSecondCard()->GetName() == "Countess") {
+					player->SetSecondCard(nullptr);
+					std::cout << player->GetName() << " draw a Baron/Prince and had to remove the countess" << std::endl;
+				}
+		}
+		else
+			if (player->GetSecondCard() != nullptr)
+				if (player->GetSecondCard()->GetName() == "King" || player->GetSecondCard()->GetName() == "Prince") {
+					if (player->GetFirstCard() != nullptr)
+						if (player->GetFirstCard()->GetName() == "Countess") {
+							player->SetFirstCard(nullptr);
+							std::cout << player->GetName() << " draw a Baron/Prince and had to remove the countess" << std::endl;
+						}
+				}
+}
+
 Game* Game::GetInstance()
 {
 	
@@ -11,16 +40,27 @@ Game* Game::GetInstance()
 		return instance;
 	
 }
-void Game::PlayerDrawCard(Player* player)
+void Game::PlayerDrawCard(Player* player,int playerLen)
 {
 	int randomNr = GetRandomNumber();
 
-	if (player->GetFirstCard()->GetName() == "")
-		player->SetFirstCard(availableCardsAddress[randomNr]);
-	else
-		player->SetSecondCard(availableCardsAddress[randomNr]);
+	if (player->GetFirstCard() == nullptr) {
+		player->SetFirstCard(availableCardsAddress[randomNr]->GetInstance());
+	}
+	else {
+		player->SetSecondCard(availableCardsAddress[randomNr]->GetInstance());
+	}
+
+	CheckForCountess(player, playerLen);
+
+	if (gameStart) {
+		std::cout << "You drew " << availableCardsAddress[randomNr]->GetName() << std::endl;
+		player->SetCardsValue(player->GetCardsValue() + availableCardsAddress[randomNr]->GetNumber());
+		system("pause");
+	}
 
 	availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+	nrOfCardsInGame--;
 }
 void Game::GameFirstCards(int& playersLen)
 {
