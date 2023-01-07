@@ -132,6 +132,7 @@
     <ClCompile Include="Countess.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Guard.cpp" />
+    <ClCompile Include="Handmaid.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
