@@ -2,16 +2,20 @@
 
 #include<string>
 #include <vector>
+class Card;
 class Player
 {private:
 	std::string m_name;
 	Card *m_firstCard;
 	Card *m_secondCard;
 	uint8_t m_tokens=0;
+	bool m_isProtected = false;
+	bool m_isDead = false;
+	int m_cardsValue = 0;
 public:
 	Player() = default;
 
-	Player(std::string name, Card *firstCard, Card *secondCard, uint8_t tokens);
+	Player(std::string name, Card *firstCard, Card *secondCard, uint8_t tokens, bool isProtected);
 
 	Player(const Player& player);
 
@@ -29,6 +33,15 @@ public:
 	void SetToken(int tokens);
 	int GetToken();
 
-	void DrawCard(Card& card, int& cardsLen, std::vector<Card> cards);
+	void SetIsProtected(bool isProtected);
+	bool GetIsProtected();
+
+	void SetIsDead(bool isDead);
+	bool GetIsDead();
+
+	void SetCardsValue(int cardsValue);
+	int GetCardsValue();
+
+	
 };
 

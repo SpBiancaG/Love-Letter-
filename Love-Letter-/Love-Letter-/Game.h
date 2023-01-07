@@ -1,8 +1,6 @@
 #pragma once
 
 #include<iostream>
-
-
 #include "Player.h"
 #include "Baron.h"
 #include "Countess.h"
@@ -14,21 +12,34 @@
 #include "Princess.h"
 class Game
 {private:
-	uint8_t m_nrOfPlayers;
+	static Game* instance;                            // (1)
+	Game() = default;
+	~Game() = default;
+
+	int m_nrOfPlayers;
 	std::vector<Player> m_players;
 	std::vector<Card*> m_beginningCards;
 	
-	std::vector<Card> availableCards = { Guard(), Guard(), Guard(), Guard(), Guard(), Priest(), Priest(), Baron(), Baron(), Handmaid(), Handmaid(), Prince(), Prince(), King(), Countess(), Princess()};
+	std::vector<Card*> availableCards = {new Guard(),new Guard(),new Guard(),new Guard(),new Guard(),new Priest(),new Priest(),new Baron(),new Baron(),new Handmaid(),new Handmaid(),new Prince(),new Prince(),new King(),new Countess(),new Princess()};
 	std::vector<Card*> availableCardsAddress;
-	int m_selectedPlayerToPlay = -1;
+	int m_selectedPlayer = -1;
+	int nrOfCardsInGame = 16;
+	int nrOfPlayersInGame = 0;
+	bool gameStart = false;
+
 public:
 	
-	Game() = default;
-	void PlayerDrawCard(Player* player);
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
+
+	static Game* GetInstance();
+		
+	
+	void PlayerDrawCard(Player* player, int playerLen);
 
 	void GameFirstCards(int& playersLen);
 
-	void NextPlayer();
+	void NextPlayer(int playerLen);
 
 	void SetStartingPlayers();
 
@@ -40,7 +51,13 @@ public:
 	
 	void GetAvailableCardsAddresses();
 
-	void Test();
+	void StartGame(int playerLen);
+
+	void RestartGame(int playerLen);
+
+	void CheckForCountess(Player* player, int playerLen);
+
+	void EndGame(int playerLen);
 	
 	
 

@@ -2,6 +2,15 @@
 #include "Player.h"
 #include<vector>
 #include<random>
+Game* Game::GetInstance()
+{
+	
+		if (!instance) {
+			instance = new Game();
+		}
+		return instance;
+	
+}
 void Game::PlayerDrawCard(Player* player)
 {
 	int randomNr = GetRandomNumber();
@@ -62,7 +71,7 @@ void Game::SetStartingPlayers()
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
 		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
-		Player playerAdd(playerName, new Card(), new Card(), 0);
+		Player PlayerAdd(PlayerName, new Card(), new Card(), 0);
 		m_players.push_back(playerAdd);
 		PlayerDrawCard(&m_players[i]);
 
@@ -94,7 +103,6 @@ void Game::Test()
 	//card = availableCardsAddress[0];
 	std::cout << card->GetName();
 }
-
 
 
 

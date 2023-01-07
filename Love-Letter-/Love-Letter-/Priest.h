@@ -1,5 +1,5 @@
 #pragma once
-
+#include"Card.h"
 class Priest :
     public Card
 {
@@ -8,8 +8,10 @@ public:
 
 	Priest(std::string name, int number, std::string description);
 
-	Priest(const Priest& guard);
+	Priest(const Priest& priest) { *this = priest; };
 
-	virtual void action(Player player);
+	void action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
+
+	Card* GetInstance() { return new Priest(*this); };
 };
 

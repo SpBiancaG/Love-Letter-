@@ -3,11 +3,12 @@
 
 
 
-Player::Player(std::string name, Card *firstCard, Card *secondCard, uint8_t  tokens) :
-	m_name(name),
-	m_firstCard(firstCard),
-	m_secondCard(secondCard),
-	m_tokens(tokens)
+Player::Player(std::string nameC, Card *firstCardC, Card *secondCardC, uint8_t  tokensC, bool isProtectedC) :
+	m_name(nameC),
+	m_firstCard(firstCardC),
+	m_secondCard(secondCardC),
+	m_tokens(tokensC),
+	m_isProtected(isProtectedC)
 
 {
 	
@@ -20,8 +21,8 @@ Player::Player(const Player& player)
 
 Player::~Player()
 {
-	delete m_firstCard;
-	delete m_secondCard;
+	//delete m_firstCard;
+	//delete m_secondCard;
 }
 
 
@@ -64,4 +65,14 @@ void Player::SetToken(int tokens)
 int Player::GetToken()
 {
 	return m_tokens;
+}
+
+void Player::SetIsProtected(bool isProtected)
+{
+	this->m_isProtected = isProtected;
+}
+
+bool Player::GetIsProtected()
+{
+	return  m_isProtected;
 }

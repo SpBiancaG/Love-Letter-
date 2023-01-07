@@ -7,8 +7,10 @@ class Baron :
 
 	Baron(std::string name, int number, std::string description);
 
-	Baron(const Baron& guard);
+	Baron(const Baron& baron) { *this = baron; };
 
-	virtual void action(Player player);
+	void action(Player& player, std::vector<Player>& players);
+
+	Card* GetInstance() { return new Baron(*this); };//smart ptr
 };
 

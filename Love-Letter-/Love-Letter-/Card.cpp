@@ -1,5 +1,5 @@
 #include "Card.h"
-
+#include<iostream>
 
 Card::Card(std::string name, uint8_t number, std::string description) :
 	m_name(name),
@@ -49,17 +49,12 @@ std::string Card::GetDescription()
 {
 	return m_description;
 }
-Card& Card::operator=(const Card& other)
-{
-	m_name = other.m_name;
-	m_number = other.m_number;
-	m_description = other.m_description;
 
-	return *this;
+
+void Card::action(Player player) { std::cout << "Card base applied" << std::endl; };
+Card* Card::GetInstance() {
+	return new Card(*this);
 }
-
-void Card::action(Player player) {};
-
 
 
 

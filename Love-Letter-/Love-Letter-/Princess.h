@@ -8,8 +8,10 @@ public:
 
 	Princess(std::string name, int number, std::string description);
 
-	Princess(const Princess& guard);
+	Princess(const Princess& princess) { *this = princess; };
 
-	virtual void action(Player player);
+	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
+
+	Card* GetInstance() { return new Princess(*this); };
 };
 

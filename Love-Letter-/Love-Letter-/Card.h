@@ -25,7 +25,8 @@ public:
 	void SetDescription(std::string description);
 	std::string GetDescription();
 
-	virtual void action(Player player);
+	virtual void action(Player& player, std::vector<Player>& players);
+	virtual Card* GetInstance();
 	
 };
 

@@ -8,8 +8,10 @@ public:
 
 	Countess(std::string name, int number, std::string description);
 
-	Countess(const Countess& guard);
+	Countess(const Countess& countess) { *this = countess; };
 
-	virtual void action(Player player);
+	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
+
+	Card* GetInstance() { return new Countess(*this); };
 };
 
