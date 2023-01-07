@@ -69,23 +69,16 @@ void Game::GameFirstCards(int& playersLen)
 			int randomNr = GetRandomNumber();
 			m_beginningCards.push_back(availableCardsAddress[randomNr]);
 			availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+			nrOfCardsInGame--;
 
 		}
 	else {
 		int randomNr = GetRandomNumber();
 		m_beginningCards.push_back(availableCardsAddress[randomNr]);
 		availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
+		nrOfCardsInGame--;
 	}
 }
-void Game::NextPlayer()
-{
-	
-	this->m_selectedPlayerToPlay++;
-	PlayerDrawCard(&m_players[m_selectedPlayerToPlay]);
-	std::cout << m_players[m_selectedPlayerToPlay].GetName() << " drew a card" << std::endl;
-
-}
-
 int Game::GetRandomNumber()
 {
 	std::random_device rd; // obtain a random number from hardware
@@ -111,19 +104,32 @@ void Game::SetStartingPlayers()
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
 		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
-		Player PlayerAdd(PlayerName, new Card(), new Card(), 0);
+		Player PlayerAdd(playerName, nullptr, nullptr, 0, false, false, 0);
 		m_players.push_back(playerAdd);
-		PlayerDrawCard(&m_players[i]);
+		PlayerDrawCard(&m_players[i], playerLen);
 
 	}
+	nrOfPlayersInGame = playerLen;
+	StartGame(playerLen);
+}
 
-	NextPlayer();
-	PrintGame(playerLen);
+int SelectCardToPlay() {
 	int key;
 	std::cin >> key;
-	NextPlayer();
-	PrintGame(playerLen);
+	if (key == 1 || key == 2)
+		return key;
+	else
+	{
+		std::cout << "Wrong card selection. Please choose again!" << std::endl;
+		SelectCardToPlay();
+		return 0;
+	}
+	return 0;
 }
+
+
+
+
 
 
 
@@ -135,6 +141,43 @@ void Game::GetAvailableCardsAddresses()
 	for (int i = 0; i < 16; i++)
 		availableCardsAddress.push_back(&availableCards[i]);
 }
+
+void Game::StartGame(int playerLen) {
+	while (nrOfCardsInGame > 0 && nrOfPlayersInGame > 1) {
+
+		NextPlayer(playerLen);
+		//remove protection on players new round
+		if (m_players[selectedPlayer].GetIsProtected())
+			m_players[selectedPlayer].SetIsProtected(false);
+
+		if (!m_players[selectedPlayer].GetIsDead())
+		{
+
+			PrintGame(playerLen);
+
+			std::cout << "Choose a card to play" << std::endl;
+			std::cout << "Choosen card: ";
+
+			if (SelectCardToPlay() == 1) {
+				m_players[selectedPlayer].GetFirstCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+				m_players[selectedPlayer].SetFirstCard(nullptr);
+			}
+
+			else {
+				m_players[selectedPlayer].GetSecondCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+				m_players[selectedPlayer].SetSecondCard(nullptr);
+			}
+
+		}
+		else {
+			std::cout << m_players[selectedPlayer].GetName() << " is dead." << std::endl;
+			system("pause");
+		}
+	}
+	EndGame(playerLen);
+
+}
+
 
 void Game::Test()
 {
