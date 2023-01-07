@@ -127,8 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actions.cpp" />
+    <ClCompile Include="Baron.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Countess.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />

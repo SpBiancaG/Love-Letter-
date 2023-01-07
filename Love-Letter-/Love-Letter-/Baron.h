@@ -9,7 +9,7 @@ class Baron :
 
 	Baron(const Baron& baron) { *this = baron; };
 
-	void action(Player& player, std::vector<Player>& players);
+	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
 	Card* GetInstance() { return new Baron(*this); };//smart ptr
 };

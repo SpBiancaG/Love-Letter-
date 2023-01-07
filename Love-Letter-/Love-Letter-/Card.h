@@ -1,32 +1,37 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 #include "Player.h"
 
 class Card
 {protected:
 	std::string m_name;
-	uint8_t m_number;
+	int m_number=0;
 	std::string m_description;
 	
 public:
 	Card() = default;
 
-	Card(std::string name, uint8_t number, std::string description);
+	Card(std::string nameC, int numberC, std::string descriptionC);
 
 	Card(const Card& card);
 
 	void SetName(std::string name);
 	std::string GetName();
 
-	void SetNumber(uint8_t number);
+	void SetNumber(int number);
 	int GetNumber();
 
 	void SetDescription(std::string description);
 	std::string GetDescription();
 
-	virtual void action(Player& player, std::vector<Player>& players);
+	virtual void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
+
 	virtual Card* GetInstance();
-	
+
+	int GetResponse(int playersLen);
+
+	void PrintPlayers(Player player, std::vector<Player> players, int& response, int playersLen, bool isPrince);
 };
 

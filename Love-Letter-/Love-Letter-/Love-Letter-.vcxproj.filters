@@ -27,7 +27,10 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actions.cpp">
+    <ClCompile Include="Baron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Countess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
