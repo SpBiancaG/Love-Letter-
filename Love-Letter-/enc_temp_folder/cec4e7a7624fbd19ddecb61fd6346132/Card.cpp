@@ -1,11 +1,11 @@
 #include "Card.h"
 
 
-Card::Card(std::string name, int number, std::string description) 
+Card::Card(std::string nameC, int numberC, std::string descriptionC) 
 	:
-	m_name(name),
-    m_number(number),
-	m_description(description)
+	m_name(nameC),
+    m_number(numberC),
+	m_description(descriptionC)
 {
 	
 }

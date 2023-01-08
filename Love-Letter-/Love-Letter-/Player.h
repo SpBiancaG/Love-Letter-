@@ -15,7 +15,7 @@ class Player
 public:
 	Player() = default;
 
-	Player(std::string name, Card *firstCard, Card *secondCard, uint8_t tokens, bool isProtected);
+	Player(std::string name, Card *firstCard, Card *secondCard, uint8_t tokens, bool isProtected, bool isDead, int cardsValue);
 
 	Player(const Player& player);
 

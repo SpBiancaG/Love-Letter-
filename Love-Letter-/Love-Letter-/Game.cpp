@@ -1,9 +1,8 @@
 #include "Game.h"
-
-#include<vector>
 #include<random>
+#include"Player.h"
 
-void Game::CheckForCountess(Player* player, int playerLen) {
+void Game::CheckForCountess(Player *player, int playerLen) {
 	if (player->GetFirstCard() != nullptr)
 		if (player->GetFirstCard()->GetName() == "Countess")
 			player->GetFirstCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
@@ -60,7 +59,7 @@ void Game::PlayerDrawCard(Player* player,int playerLen)
 	}
 
 	availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
-	nrOfCardsInGame--;
+	
 }
 void Game::GameFirstCards(int& playersLen)
 {
@@ -69,14 +68,14 @@ void Game::GameFirstCards(int& playersLen)
 			int randomNr = GetRandomNumber();
 			m_beginningCards.push_back(availableCardsAddress[randomNr]);
 			availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
-			nrOfCardsInGame--;
+			
 
 		}
 	else {
 		int randomNr = GetRandomNumber();
 		m_beginningCards.push_back(availableCardsAddress[randomNr]);
 		availableCardsAddress.erase(availableCardsAddress.begin() + randomNr);
-		nrOfCardsInGame--;
+		
 	}
 }
 int Game::GetRandomNumber()
@@ -104,7 +103,7 @@ void Game::SetStartingPlayers()
 	for (int i = 0; i < playerLen; i++) {
 		std::string playerName = "";
 		std::cout << "Player nr " << i << " name: "; std::cin >> playerName;
-		Player PlayerAdd(playerName, nullptr, nullptr, 0, false, false, 0);
+		Player playerAdd(playerName, nullptr, nullptr, 0, false, false, 0);
 		m_players.push_back(playerAdd);
 		PlayerDrawCard(&m_players[i], playerLen);
 
@@ -131,17 +130,6 @@ int SelectCardToPlay() {
 
 
 
-
-
-
-
-
-void Game::GetAvailableCardsAddresses()
-{
-	for (int i = 0; i < 16; i++)
-		availableCardsAddress.push_back(&availableCards[i]);
-}
-
 void Game::StartGame(int playerLen) {
 	while (nrOfCardsInGame > 0 && nrOfPlayersInGame > 1) {
 
@@ -158,14 +146,16 @@ void Game::StartGame(int playerLen) {
 			std::cout << "Choose a card to play" << std::endl;
 			std::cout << "Choosen card: ";
 
-			if (SelectCardToPlay() == 1) {
-				m_players[selectedPlayer].GetFirstCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
-				m_players[selectedPlayer].SetFirstCard(nullptr);
-			}
+			if (m_players[selectedPlayer].GetFirstCard() != nullptr && m_players[selectedPlayer].GetSecondCard() != nullptr) {
+				if (SelectCardToPlay() == 1) {
+					m_players[selectedPlayer].GetFirstCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+					m_players[selectedPlayer].SetFirstCard(nullptr);
+				}
 
-			else {
-				m_players[selectedPlayer].GetSecondCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
-				m_players[selectedPlayer].SetSecondCard(nullptr);
+				else {
+					m_players[selectedPlayer].GetSecondCard()->Action(m_players[selectedPlayer], m_players, playerLen, nrOfPlayersInGame);
+					m_players[selectedPlayer].SetSecondCard(nullptr);
+				}
 			}
 
 		}
@@ -292,13 +282,21 @@ void Game::PrintGame(int& playerLen)
 
 	PrintRecicleCards(playerLen);
 
-	std::cout << m_players[selectedPlayer].GetName() << "'s turn" << std::endl << std::endl;
-	std::cout << "First Card:" << m_players[selectedPlayer].GetFirstCard()->GetNumber() << "\t";
-	std::cout << m_players[selectedPlayer].GetFirstCard()->GetName() << "\t";
-	std::cout << m_players[selectedPlayer].GetFirstCard()->GetDescription() << std::endl;
-	std::cout << "Second Card:" << m_players[selectedPlayer].GetSecondCard()->GetNumber() << "\t";
-	std::cout << m_players[selectedPlayer].GetSecondCard()->GetName() << "\t";
-	std::cout << m_players[selectedPlayer].GetSecondCard()->GetDescription() << std::endl;
+	std::cout << m_players[selectedPlayer].GetName() << "' turn" << std::endl << std::endl;
+	if (m_players[selectedPlayer].GetFirstCard() != nullptr) {
+		std::cout << "First Card:" << m_players[selectedPlayer].GetFirstCard()->GetNumber() << "\t";
+		std::cout << m_players[selectedPlayer].GetFirstCard()->GetName() << "\t";
+		std::cout << m_players[selectedPlayer].GetFirstCard()->GetDescription() << std::endl;
+	}
+	else
+		std::cout << "No First Card" << std::endl;
+	if (m_players[selectedPlayer].GetSecondCard() != nullptr) {
+		std::cout << "Second Card:" << m_players[selectedPlayer].GetSecondCard()->GetNumber() << "\t";
+		std::cout << m_players[selectedPlayer].GetSecondCard()->GetName() << "\t";
+		std::cout << m_players[selectedPlayer].GetSecondCard()->GetDescription() << std::endl;
+	}
+	else
+		std::cout << "No Second Card" << std::endl;
 
 }
 void Game::NextPlayer(int playerLen) {
@@ -307,8 +305,10 @@ void Game::NextPlayer(int playerLen) {
 		selectedPlayer = -1;
 
 	selectedPlayer++;
-	PlayerDrawCard(&m_players[selectedPlayer], playerLen);
-	std::cout << m_players[selectedPlayer].GetName() << " drew a card" << std::endl;
+	if (!m_players[selectedPlayer].GetIsDead()) {
+		PlayerDrawCard(&m_players[selectedPlayer], playerLen);
+		std::cout << m_players[selectedPlayer].GetName() << " drew a card" << std::endl;
+	}
 	gameStart = true;
 }
 

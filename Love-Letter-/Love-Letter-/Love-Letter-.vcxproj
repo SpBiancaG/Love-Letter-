@@ -137,6 +137,8 @@
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Priest.cpp" />
+    <ClCompile Include="Prince.cpp" />
+    <ClCompile Include="Princess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Baron.h" />

@@ -8,17 +8,19 @@ int GetCardResponse() {
 	else {
 		std::cout << "Unknown card. Choose again!" << std::endl;
 		GetCardResponse();
-		return 0;
+		
 	}
 	return 0;
 }
 
 
-bool verifyGuardCard(std::string cardName, Player player) {
-	if (player.GetFirstCard()->GetName() == cardName)
-		return 1;
-	else if (player.GetSecondCard()->GetName() == cardName)
-		return 1;
+bool VerifyGuardCard(std::string cardName, Player player) {
+	if (player.GetFirstCard() != nullptr)
+		if (player.GetFirstCard()->GetName() == cardName)
+			return 1;
+	else if (player.GetSecondCard() != nullptr)
+			if (player.GetSecondCard()->GetName() == cardName)
+				return 1;
 	else return 0;
 }
 
@@ -43,25 +45,25 @@ void Guard::Action(Player& player, std::vector<Player>& players, int playersLen,
 
 	switch (responseCard) {
 	case 1:
-		isFound = verifyGuardCard("Priest", players[responsePlayer]);
+		isFound = VerifyGuardCard("Priest", players[responsePlayer]);
 		break;
 	case 2:
-		isFound = verifyGuardCard("Baron", players[responsePlayer]);
+		isFound = VerifyGuardCard("Baron", players[responsePlayer]);
 		break;
 	case 3:
-		isFound = verifyGuardCard("Handmaid", players[responsePlayer]);
+		isFound = VerifyGuardCard("Handmaid", players[responsePlayer]);
 		break;
 	case 4:
-		isFound = verifyGuardCard("Prince", players[responsePlayer]);
+		isFound = VerifyGuardCard("Prince", players[responsePlayer]);
 		break;
 	case 5:
-		isFound = verifyGuardCard("King", players[responsePlayer]);
+		isFound = VerifyGuardCard("King", players[responsePlayer]);
 		break;
 	case 6:
-		isFound = verifyGuardCard("Countess", players[responsePlayer]);
+		isFound = VerifyGuardCard("Countess", players[responsePlayer]);
 		break;
 	case 7:
-		isFound = verifyGuardCard("Princess", players[responsePlayer]);
+		isFound = VerifyGuardCard("Princess", players[responsePlayer]);
 		break;
 	}
 

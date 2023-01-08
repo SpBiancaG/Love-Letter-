@@ -45,6 +45,12 @@
     <ClCompile Include="Priest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Prince.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Princess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h">
