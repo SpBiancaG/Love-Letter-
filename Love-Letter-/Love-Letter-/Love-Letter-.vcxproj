@@ -133,8 +133,10 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Guard.cpp" />
     <ClCompile Include="Handmaid.cpp" />
+    <ClCompile Include="King.cpp" />
     <ClCompile Include="Love-Letter-.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Priest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Baron.h" />

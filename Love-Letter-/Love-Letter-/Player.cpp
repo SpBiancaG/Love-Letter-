@@ -76,3 +76,9 @@ bool Player::GetIsProtected()
 {
 	return  m_isProtected;
 }
+
+void Player::SetIsDead(bool isDead) { this->m_isDead = isDead; }
+bool Player::GetIsDead() { return m_isDead; }
+
+void Player::SetCardsValue(int cardsValue) { this->m_cardsValue = cardsValue; }
+int Player::GetCardsValue() { return m_cardsValue; }
