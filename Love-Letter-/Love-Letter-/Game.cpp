@@ -131,7 +131,7 @@ int SelectCardToPlay() {
 
 
 void Game::StartGame(int playerLen) {
-	while (nrOfCardsInGame > 0 && nrOfPlayersInGame > 1) {
+	while (availableCardsAddress.size() > 0 && nrOfPlayersInGame > 1) {
 
 		NextPlayer(playerLen);
 		//remove protection on players new round
@@ -244,7 +244,7 @@ bool VerifyWinCondition(Player player, int token, int playerLen, int playerLenSe
 void Game::RestartGame(int playerLen) {
 	GetAvailableCardsAddresses();
 	nrOfPlayersInGame = playerLen;
-	nrOfCardsInGame = 16;
+	
 	selectedPlayer = -1;
 	bool won = false;
 	for (int i = 0; i < m_players.size(); i++) {
