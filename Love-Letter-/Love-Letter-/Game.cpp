@@ -172,7 +172,7 @@ void Game::StartGame(int playerLen) {
 
 }
 
-int checkCardMaxValue(Player player) {
+int CheckCardMaxValue(Player player) {
 	//player are prima carte
 	if (player.GetFirstCard() != nullptr)
 		//player are si a doua carte
@@ -206,16 +206,16 @@ void Game::EndGame(int playerLen) {
 		int nrMax = 0;
 
 		for (int i = 0; i < m_players.size(); i++)
-			if (max < checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
-				max = checkCardMaxValue(m_players[i]);
+			if (max < CheckCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
+				max = CheckCardMaxValue(m_players[i]);
 				nrMax = 1;
 			}
-			else if (max == checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead())
+			else if (max == CheckCardMaxValue(m_players[i]) && !m_players[i].GetIsDead())
 				nrMax++;
 
 		if (nrMax == 1) {
 			for (int i = 0; i < m_players.size(); i++)
-				if (max == checkCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
+				if (max == CheckCardMaxValue(m_players[i]) && !m_players[i].GetIsDead()) {
 					m_players[i].SetToken(m_players[i].GetToken() + 1);
 					RestartGame(playerLen);
 				}
@@ -225,7 +225,7 @@ void Game::EndGame(int playerLen) {
 			int maxCards = 0;
 
 			for (int i = 0; i < m_players.size(); i++)
-				if (maxCards < m_players[i].GetCardsValue() && !m_players[i].GetIsDead() && max == checkCardMaxValue(m_players[i]))
+				if (maxCards < m_players[i].GetCardsValue() && !m_players[i].GetIsDead() && max == CheckCardMaxValue(m_players[i]))
 					maxCards = m_players[i].GetCardsValue();
 
 			for (int i = 0; i < m_players.size(); i++)

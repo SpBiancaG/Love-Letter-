@@ -42,7 +42,7 @@ void Prince::Action(Player& player, std::vector<Player>& players, int playersLen
 	int responsePlayer;
 	bool isPrincess;
 
-	PrintPlayers(player, players, responsePlayer, playersLen, false);
+	PrintPlayers(player, players, responsePlayer, playersLen, true);
 	if (responsePlayer == -1)
 		return;
 

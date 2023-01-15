@@ -15,6 +15,7 @@ int GetCardResponse() {
 
 
 bool VerifyGuardCard(std::string cardName, Player player) {
+	bool found = false;
 	if (player.GetFirstCard() != nullptr)
 		if (player.GetFirstCard()->GetName() == cardName)
 			return 1;
@@ -68,7 +69,7 @@ void Guard::Action(Player& player, std::vector<Player>& players, int playersLen,
 	}
 
 	if (isFound) {
-		std::cout << "You guessed " << players[responsePlayer].GetName() << "'s card!" << std::endl;
+		std::cout << "You've guessed " << players[responsePlayer].GetName() << "'s card!" << std::endl;
 		players[responsePlayer].SetIsDead(true);
 		nrOfPlayersInGame--;
 		system("pause");
