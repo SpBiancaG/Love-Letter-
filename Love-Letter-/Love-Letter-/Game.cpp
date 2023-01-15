@@ -94,7 +94,7 @@ void Game::SetStartingPlayers()
 	std::cout << "Number of players: "; std::cin >> playerLen;
 
 	if (playerLen < 2 || playerLen>4) {
-		std::cout << "Not enough players. Try again!";
+		std::cout << "Not enough or too many players. Try again!";
 		return;
 	}
 
@@ -157,7 +157,11 @@ void Game::StartGame(int playerLen) {
 					m_players[selectedPlayer].SetSecondCard(nullptr);
 				}
 			}
+			else {
+				std::cout << "Skipped round since could not find 2 cards in players' hand" << std::endl;
+				system("pause");
 
+			}
 		}
 		else {
 			std::cout << m_players[selectedPlayer].GetName() << " is dead." << std::endl;
@@ -249,12 +253,13 @@ void Game::RestartGame(int playerLen) {
 	bool won = false;
 	m_beginningCards.clear();
     GameFirstCards(playerLen);
+
 	for (int i = 0; i < m_players.size(); i++) {
 		won = VerifyWinCondition(m_players[i], 7, playerLen, 2);
 		won = VerifyWinCondition(m_players[i], 5, playerLen, 3);
 		won = VerifyWinCondition(m_players[i], 4, playerLen, 4);
 		if (won)
-			return;
+			exit;
 		m_players[i].SetFirstCard(nullptr);
 		m_players[i].SetSecondCard(nullptr);
 		m_players[i].SetIsDead(false);
@@ -281,6 +286,16 @@ void Game::PrintRecicleCards(int& playerLen) {
 void Game::PrintGame(int& playerLen)
 {
 	system("cls");
+
+	for (int i = 0; i < m_players.size(); i++) {
+		std::cout << m_players[i].GetName() << "\t" << m_players[i].GetToken() << "\t";
+		if (m_players[i].GetIsDead())
+			std::cout << "Dead" << std::endl;
+		else
+			std::cout << "Alive" << std::endl;
+	}
+
+	std::cout << std::endl;
 
 	PrintRecicleCards(playerLen);
 

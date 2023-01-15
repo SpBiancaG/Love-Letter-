@@ -48,21 +48,22 @@ int Card::GetResponse(int playersLen, std::vector<int> numbers) {
 }
 
 void Card::PrintPlayers(Player player, std::vector<Player> players, int& response, int playersLen, bool isPrince) {
-	bool foundPlayers = false;
+	std::vector<int> number;
 
 	std::cout << "Select a player" << std::endl;
 
 	for (int i = 0; i < players.size(); i++) {
 		if ((players[i].GetName() != player.GetName() && players[i].GetIsDead() == false && players[i].GetIsProtected() == false) || isPrince)
 		{
+			number.push_back(i);
 			std::cout << i << ")" << players[i].GetName() << std::endl;
-			foundPlayers = true;
+			
 		}
 	}
 
-	if (foundPlayers == true) {
+	if (number.size() != 0) {
 		std::cout << "Selected player: ";
-		response = GetResponse(playersLen);
+		response = GetResponse(playersLen, number);
 	}
 	else {
 		std::cout << "No players found. All players are protected!" << std::endl;
