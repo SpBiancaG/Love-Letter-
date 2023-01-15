@@ -11,6 +11,6 @@ class Baron :
 
 	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
-	Card* GetInstance() { return new Baron(*this); };
+	Card* GetInstance();
 };
 

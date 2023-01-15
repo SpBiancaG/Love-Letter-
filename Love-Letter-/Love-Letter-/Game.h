@@ -12,19 +12,19 @@
 #include "Princess.h"
 class Game
 {private:
-	static Game* instance;                            
+	static Game* m_instance;                            
 	Game() = default;
 	~Game() = default;
 
-	int m_nrOfPlayers=0;
+	
 	std::vector<Player> m_players;
 	std::vector<Card*> m_beginningCards;
 	
-	std::vector<Card*> availableCards = { new Guard(), new Guard(), new Guard(), new Guard(), new Guard(), new Priest(), new Priest(), new Baron(), new Baron(), new Handmaid(), new Handmaid(), new Prince(), new Prince(), new King(), new Countess(), new Princess() };
-	std::vector<Card*> availableCardsAddress;
-	int selectedPlayer = -1;
-	int nrOfPlayersInGame = 0;
-	bool gameStart = false;
+	std::vector<Card*> m_availableCards = { new Guard(), new Guard(), new Guard(), new Guard(), new Guard(), new Priest(), new Priest(), new Baron(), new Baron(), new Handmaid(), new Handmaid(), new Prince(), new Prince(), new King(), new Countess(), new Princess() };
+	std::vector<Card*> m_availableCardsAddress;
+	int m_selectedPlayer = -1;
+	int m_nrOfPlayersInGame = 0;
+	bool m_gameStart = false;
 
 public:
 	
@@ -34,7 +34,7 @@ public:
 	static Game* GetInstance();
 		
 	
-	void PlayerDrawCard(Player* player, int playerLen);
+	void PlayerDrawCard(Player* player, int playerLen, bool isPrinceAction);
 
 	void GameFirstCards(int& playersLen);
 

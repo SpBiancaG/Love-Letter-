@@ -1,18 +1,6 @@
 #include "Prince.h"
 #include "Game.h"
 
-int GetPrinceCardResponse() {
-	int response;
-	std::cin >> response;
-	if (response == 1 || response == 2)
-		return response;
-	else {
-		std::cout << "Unknown card. Choose again!" << std::endl;
-		GetPrinceCardResponse();
-		return 0;
-	}
-	return 0;
-}
 
 bool CheckIfPlayerDroppedPrincess(Player& player, int& nrOfPlayersInGame) {
 	if (player.GetFirstCard() != nullptr)
@@ -38,6 +26,11 @@ bool CheckIfPlayerDroppedPrincess(Player& player, int& nrOfPlayersInGame) {
 
 
 
+Prince::Prince(const Prince& prince)
+{
+	*this = prince;
+}
+
 void Prince::Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
 	int responsePlayer;
 	bool isPrincess;
@@ -52,13 +45,18 @@ void Prince::Action(Player& player, std::vector<Player>& players, int playersLen
 	if (!isPrincess) {
 		if (players[responsePlayer].GetFirstCard() != nullptr) {
 			players[responsePlayer].SetFirstCard(nullptr);
-			game->PlayerDrawCard(&players[responsePlayer], playersLen);
+			game->PlayerDrawCard(&players[responsePlayer], playersLen,true);
 		}
 		else {
 			players[responsePlayer].SetSecondCard(nullptr);
-			game->PlayerDrawCard(&players[responsePlayer], playersLen);
+			game->PlayerDrawCard(&players[responsePlayer], playersLen,true);
 		}
 		system("pause");
 	}
 
+}
+
+Card* Prince::GetInstance()
+{
+	return new Prince(*this);
 }

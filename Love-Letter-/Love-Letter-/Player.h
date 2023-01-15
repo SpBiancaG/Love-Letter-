@@ -19,7 +19,7 @@ public:
 
 	Player(const Player& player);
 
-	~Player();
+	~Player()=default;
 
 	void SetName(std::string name);
 	std::string GetName();

@@ -20,3 +20,8 @@ void Countess::Action(Player& player, std::vector<Player>& players, int playersL
 	dropCountess(player, "King");
 	dropCountess(player, "Prince");
 }
+
+Card* Countess::GetInstance()
+{
+	return new Countess(*this);
+}

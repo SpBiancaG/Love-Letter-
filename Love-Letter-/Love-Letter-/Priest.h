@@ -8,10 +8,10 @@ public:
 
 	Priest(std::string name, int number, std::string description);
 
-	Priest(const Priest& priest) { *this = priest; };
+	Priest(const Priest& priest);
 
 	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
-	Card* GetInstance() { return new Priest(*this); };
+	Card* GetInstance();
 };
 

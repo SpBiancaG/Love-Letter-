@@ -14,6 +14,11 @@ void printCards(Player player) {
 	}
 }
 
+Priest::Priest(const Priest& priest)
+{
+	*this = priest;
+}
+
 void Priest::Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
 	int responsePlayer;
 
@@ -23,4 +28,9 @@ void Priest::Action(Player& player, std::vector<Player>& players, int playersLen
 
 	printCards(players[responsePlayer]);
 	system("pause");
+}
+
+Card* Priest::GetInstance()
+{
+	return new Priest(*this);
 }

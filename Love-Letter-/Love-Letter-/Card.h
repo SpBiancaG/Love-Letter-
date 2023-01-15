@@ -17,6 +17,8 @@ public:
 
 	Card(const Card& card);
 
+	~Card() = default;
+
 	void SetName(std::string name);
 	std::string GetName();
 

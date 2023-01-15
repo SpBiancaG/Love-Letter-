@@ -2,7 +2,7 @@
 #include"Game.h"
 
 
-Game* Game::instance = nullptr;
+Game* Game::m_instance = nullptr;
 
 
 int main() {

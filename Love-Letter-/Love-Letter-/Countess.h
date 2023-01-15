@@ -12,6 +12,6 @@ public:
 
 	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
-	Card* GetInstance() { return new Countess(*this); };
+	Card* GetInstance() ;
 };
 

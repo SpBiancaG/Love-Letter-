@@ -25,6 +25,13 @@ bool VerifyGuardCard(std::string cardName, Player player) {
 	else return 0;
 }
 
+
+
+Guard::Guard(const Guard& guard)
+{
+	*this = guard;
+}
+
 void Guard::Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
 	std::cout << "Choose a card:" << std::endl;
 	std::cout << "1.Priest" << std::endl;
@@ -78,4 +85,9 @@ void Guard::Action(Player& player, std::vector<Player>& players, int playersLen,
 		std::cout << "You did not guessed the correct card! :(" << std::endl;
 		system("pause");
 	}
+}
+
+Card* Guard::GetInstance()
+{
+	return new Guard(*this);
 }

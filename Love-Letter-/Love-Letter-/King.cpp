@@ -8,6 +8,11 @@ void SwapCards(Card* card1, Card* card2) {
 	*card2 = std::move(tmp);
 }
 
+King::King(const King& king)
+{
+	*this = king;
+}
+
 void King::Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
 	int responsePlayer;
 
@@ -26,4 +31,9 @@ void King::Action(Player& player, std::vector<Player>& players, int playersLen, 
 		else
 			SwapCards(player.GetFirstCard(), players[responsePlayer].GetSecondCard());
 	system("pause");
+}
+
+Card* King::GetInstance()
+{
+	return new King(*this);
 }

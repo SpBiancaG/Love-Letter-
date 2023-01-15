@@ -8,11 +8,10 @@ public:
 
 	Guard(std::string name, int number, std::string description);
 
-	Guard(const Guard& guard) { *this = guard; };
-
+	Guard(const Guard& guard);
 
 	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
-	Card* GetInstance() { return new Guard(*this); };
+	Card* GetInstance() ;
 };
 

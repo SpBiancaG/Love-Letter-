@@ -7,10 +7,10 @@ class King :
 
 	King(std::string name, int number, std::string description);
 
-	King(const King& king) { *this = king; };
+	King(const King& king);
 
 	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
-	Card* getInstance() { return new King(*this); };
+	Card* GetInstance();
 };
 

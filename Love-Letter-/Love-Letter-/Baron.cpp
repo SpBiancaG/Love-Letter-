@@ -39,3 +39,8 @@ void Baron::Action(Player& player, std::vector<Player>& players, int playersLen,
 
 	system("pause");
 }
+
+Card* Baron::GetInstance()
+{
+	return new Baron(*this);
+}
