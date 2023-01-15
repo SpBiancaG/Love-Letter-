@@ -13,7 +13,7 @@ class Card
 public:
 	Card() = default;
 
-	Card(std::string nameC, int numberC, std::string descriptionC);
+	Card(std::string name, int number, std::string description);
 
 	Card(const Card& card);
 
@@ -30,7 +30,7 @@ public:
 
 	virtual Card* GetInstance();
 
-	int GetResponse(int playersLen);
+	int GetResponse(int playersLen, std::vector<int> numbers);
 
 	void PrintPlayers(Player player, std::vector<Player> players, int& response, int playersLen, bool isPrince);
 };

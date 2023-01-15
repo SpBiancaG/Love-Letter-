@@ -10,7 +10,7 @@ public:
 
 	Priest(const Priest& priest) { *this = priest; };
 
-	void action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
+	void Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame);
 
 	Card* GetInstance() { return new Priest(*this); };
 };

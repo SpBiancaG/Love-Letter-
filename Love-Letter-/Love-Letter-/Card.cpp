@@ -17,18 +17,15 @@ Card::Card(const Card& card){ *this = card; }
 
 
 void Card::SetName(std::string name){ this->m_name = name; }
-
 std::string Card::GetName(){ return m_name; }
 
 
 
 void Card::SetNumber(int number){ this->m_number = number; }
-
 int Card::GetNumber(){ return m_number; }
 
 
 void Card::SetDescription(std::string description){ this->m_description = description; }
-
 std::string Card::GetDescription(){	return m_description; }
 
 
@@ -37,15 +34,16 @@ void Card::Action(Player& player, std::vector<Player>& players, int playersLen, 
 
 Card* Card::GetInstance() { return new Card(*this); }
 
-int Card::GetResponse(int playersLen) {
+int Card::GetResponse(int playersLen, std::vector<int> numbers) {
 	int response;
 	std::cin >> response;
-	if (response >= 0 && response < playersLen)
-		return response;
-	else {
-		std::cout << "Unknown player. Choose again!" << std::endl;
-		GetResponse(playersLen);
-	}
+	for (int i = 0; i < numbers.size(); i++)
+		if (numbers[i] == response)
+			return response;
+		else {
+			std::cout << "Unknown player. Choose again!" << std::endl;
+			return GetResponse(playersLen, numbers);
+		}
 	return 0;
 }
 

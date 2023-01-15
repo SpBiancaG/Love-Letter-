@@ -14,7 +14,7 @@ void printCards(Player player) {
 	}
 }
 
-void Priest::action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
+void Priest::Action(Player& player, std::vector<Player>& players, int playersLen, int& nrOfPlayersInGame) {
 	int responsePlayer;
 
 	PrintPlayers(player, players, responsePlayer, playersLen, false);

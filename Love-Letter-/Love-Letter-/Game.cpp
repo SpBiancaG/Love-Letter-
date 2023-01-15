@@ -247,6 +247,8 @@ void Game::RestartGame(int playerLen) {
 	
 	selectedPlayer = -1;
 	bool won = false;
+	m_beginningCards.clear();
+    GameFirstCards(playerLen);
 	for (int i = 0; i < m_players.size(); i++) {
 		won = VerifyWinCondition(m_players[i], 7, playerLen, 2);
 		won = VerifyWinCondition(m_players[i], 5, playerLen, 3);
@@ -282,7 +284,7 @@ void Game::PrintGame(int& playerLen)
 
 	PrintRecicleCards(playerLen);
 
-	std::cout << m_players[selectedPlayer].GetName() << "' turn" << std::endl << std::endl;
+	std::cout << m_players[selectedPlayer].GetName() << "'s turn" << std::endl << std::endl;
 	if (m_players[selectedPlayer].GetFirstCard() != nullptr) {
 		std::cout << "First Card:" << m_players[selectedPlayer].GetFirstCard()->GetNumber() << "\t";
 		std::cout << m_players[selectedPlayer].GetFirstCard()->GetName() << "\t";

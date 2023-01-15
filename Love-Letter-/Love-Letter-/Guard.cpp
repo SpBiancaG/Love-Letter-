@@ -68,13 +68,13 @@ void Guard::Action(Player& player, std::vector<Player>& players, int playersLen,
 	}
 
 	if (isFound) {
-		std::cout << "You guessed " << players[responsePlayer].GetName() << " card" << std::endl;
+		std::cout << "You guessed " << players[responsePlayer].GetName() << "'s card!" << std::endl;
 		players[responsePlayer].SetIsDead(true);
 		nrOfPlayersInGame--;
 		system("pause");
 	}
 	else {
-		std::cout << "You did not guessed the correct card!" << std::endl;
+		std::cout << "You did not guessed the correct card! :(" << std::endl;
 		system("pause");
 	}
 }

@@ -12,7 +12,7 @@
 #include "Princess.h"
 class Game
 {private:
-	static Game* instance;                            // (1)
+	static Game* instance;                            
 	Game() = default;
 	~Game() = default;
 
@@ -20,7 +20,7 @@ class Game
 	std::vector<Player> m_players;
 	std::vector<Card*> m_beginningCards;
 	
-	std::vector<Card*> availableCards = {new Guard(),new Guard(),new Guard(),new Guard(),new Guard(),new Priest(),new Priest(),new Baron(),new Baron(),new Handmaid(),new Handmaid(),new Prince(),new Prince(),new King(),new Countess(),new Princess()};
+	std::vector<Card*> availableCards = { new Guard(), new Guard(), new Guard(), new Guard(), new Guard(), new Priest(), new Priest(), new Baron(), new Baron(), new Handmaid(), new Handmaid(), new Prince(), new Prince(), new King(), new Countess(), new Princess() };
 	std::vector<Card*> availableCardsAddress;
 	int selectedPlayer = -1;
 	int nrOfPlayersInGame = 0;
